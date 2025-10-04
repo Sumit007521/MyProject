@@ -1,0 +1,20 @@
+name: Running Script Workflow
+
+on:
+  push:  
+  workflow_dispatch:
+
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Script
+      shell: bash
+      run: |
+        chmod +x ./script.sh
+        ./script.sh  
