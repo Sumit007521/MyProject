@@ -59,14 +59,3 @@ jobs:
       run: ls
 
 
-    # - name: Upload Artifacts
-    #   env:
-    #     PROJECT_NAME: ${{ vars.PROJECT_NAME }}
-    #     TARGET_OS: ${{ vars.TARGET_OS }}
-    #     BUILD_TYPE: ${{ vars.BUILD_TYPE }}
-    #     MAINTAINER: ${{ vars.MAINTAINER }}
-    #     ARTIFACT_BUCKET: ${{ vars.ARTIFACT_BUCKET }}
-    #   run: |
-    #     echo "Uploading to $ARTIFACT_BUCKET"
-    #     # Simulate upload
-    #     echo "Artifact uploaded: ${PROJECT_NAME}_${TARGET_OS}_${BUILD_TYPE}.zip"

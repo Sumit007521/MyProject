@@ -1,8 +1,6 @@
 name: Cross-Platform Build & Package
 
 on:
-  push:
-    branches: main
   workflow_dispatch:
 
 jobs:
@@ -23,12 +21,6 @@ jobs:
 
     - name: Variables Checking
       shell: bash 
-      env:
-        PROJECT_NAME: ${{ vars.PROJECT_NAME }}
-        TARGET_OS: ${{ vars.TARGET_OS }}
-        BUILD_TYPE: ${{ vars.BUILD_TYPE }}
-        MAINTAINER: ${{ vars.MAINTAINER }}
-        RUN_MODE: ${{ vars.RUN_MODE }}
       run: |
         echo "PROJECT_NAME: $PROJECT_NAME"
         echo "TARGET_OS: $TARGET_OS"
@@ -39,12 +31,6 @@ jobs:
         
     - name: Build Application
       shell: bash
-      env:
-        PROJECT_NAME: ${{ vars.PROJECT_NAME }}
-        TARGET_OS: ${{ vars.TARGET_OS }}
-        BUILD_TYPE: ${{ vars.BUILD_TYPE }}
-        MAINTAINER: ${{ vars.MAINTAINER }}
-        RUN_MODE: ${{ vars.RUN_MODE }}
       run: |
         echo "Building $RUN_MODE $PROJECT_NAME for $TARGET_OS in $BUILD_TYPE mode"
         echo "Maintainer: $MAINTAINER"
@@ -54,11 +40,6 @@ jobs:
 
     - name: Package Artifacts
       shell: bash
-      env:
-        PROJECT_NAME: ${{ vars.PROJECT_NAME }}
-        TARGET_OS: ${{ vars.TARGET_OS }}
-        BUILD_TYPE: ${{ vars.BUILD_TYPE }}
-        RUN_MODE: ${{ vars.RUN_MODE }}
       run: |
         echo "Packaging $RUN_MODE $PROJECT_NAME artifacts"
         zip -r ${PROJECT_NAME}_${TARGET_OS}_${BUILD_TYPE}.zip build
@@ -67,15 +48,3 @@ jobs:
       shell: bash 
       run: ls
 
-
-    # - name: Upload Artifacts
-    #   env:
-    #     PROJECT_NAME: ${{ vars.PROJECT_NAME }}
-    #     TARGET_OS: ${{ vars.TARGET_OS }}
-    #     BUILD_TYPE: ${{ vars.BUILD_TYPE }}
-    #     MAINTAINER: ${{ vars.MAINTAINER }}
-    #     ARTIFACT_BUCKET: ${{ vars.ARTIFACT_BUCKET }}
-    #   run: |
-    #     echo "Uploading to $ARTIFACT_BUCKET"
-    #     # Simulate upload
-    #     echo "Artifact uploaded: ${PROJECT_NAME}_${TARGET_OS}_${BUILD_TYPE}.zip"
