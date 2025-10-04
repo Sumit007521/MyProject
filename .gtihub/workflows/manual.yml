@@ -1,0 +1,65 @@
+name: Cross-Platform Build & Package
+
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Variables Checking
+      env:
+        PROJECT_NAME: ${{ vars.PROJECT_NAME }}
+        TARGET_OS: ${{ vars.TARGET_OS }}
+        BUILD_TYPE: ${{ vars.BUILD_TYPE }}
+        MAINTAINER: ${{ vars.MAINTAINER }}
+        RUN_MODE: ${{ vars.RUN_MODE }}
+      run: |
+        echo "PROJECT_NAME: $PROJECT_NAME"
+        echo "TARGET_OS: $TARGET_OS"
+        echo "BUILD_TYPE: $BUILD_TYPE"
+        echo "Maintainer: $MAINTAINER"
+        echo "RUN_MODE: $RUN_MODE"
+        echo "Variables checked successfully"
+        
+    - name: Build Application
+      env:
+        PROJECT_NAME: ${{ vars.PROJECT_NAME }}
+        TARGET_OS: ${{ vars.TARGET_OS }}
+        BUILD_TYPE: ${{ vars.BUILD_TYPE }}
+        MAINTAINER: ${{ vars.MAINTAINER }}
+        RUN_MODE: ${{ vars.RUN_MODE }}
+      run: |
+        echo "Building $RUN_MODE $PROJECT_NAME for $TARGET_OS in $BUILD_TYPE mode"
+        echo "Maintainer: $MAINTAINER"
+        mkdir build && cd build
+        # Simulate build
+        echo "Build complete" > ${PROJECT_NAME}_build.txt
+
+    - name: Package Artifacts
+      env:
+        PROJECT_NAME: ${{ vars.PROJECT_NAME }}
+        TARGET_OS: ${{ vars.TARGET_OS }}
+        BUILD_TYPE: ${{ vars.BUILD_TYPE }}
+        RUN_MODE: ${{ vars.RUN_MODE }}
+      run: |
+        echo "Packaging $RUN_MODE $PROJECT_NAME artifacts"
+        zip -r ${PROJECT_NAME}_${TARGET_OS}_${BUILD_TYPE}.zip build
+
+    # - name: Upload Artifacts
+    #   env:
+    #     PROJECT_NAME: ${{ vars.PROJECT_NAME }}
+    #     TARGET_OS: ${{ vars.TARGET_OS }}
+    #     BUILD_TYPE: ${{ vars.BUILD_TYPE }}
+    #     MAINTAINER: ${{ vars.MAINTAINER }}
+    #     ARTIFACT_BUCKET: ${{ vars.ARTIFACT_BUCKET }}
+    #   run: |
+    #     echo "Uploading to $ARTIFACT_BUCKET"
+    #     # Simulate upload
+    #     echo "Artifact uploaded: ${PROJECT_NAME}_${TARGET_OS}_${BUILD_TYPE}.zip"
