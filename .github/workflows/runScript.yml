@@ -1,4 +1,4 @@
-name: Running Script Workflow
+name: Running Script With .env
 
 on:
   workflow_dispatch:

@@ -1,7 +1,6 @@
-name: Running Script Workflow
+name: Running Script With Custom Action
 
 on:
-  push:  
   workflow_dispatch:
 
 jobs:
