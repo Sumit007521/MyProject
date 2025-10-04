@@ -15,6 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Variables Checking
+      shell: bash 
       env:
         PROJECT_NAME: ${{ vars.PROJECT_NAME }}
         TARGET_OS: ${{ vars.TARGET_OS }}
@@ -30,6 +31,7 @@ jobs:
         echo "Variables checked successfully"
         
     - name: Build Application
+      shell: bash
       env:
         PROJECT_NAME: ${{ vars.PROJECT_NAME }}
         TARGET_OS: ${{ vars.TARGET_OS }}
@@ -44,6 +46,7 @@ jobs:
         echo "Build complete" > ${PROJECT_NAME}_build.txt
 
     - name: Package Artifacts
+      shell: bash
       env:
         PROJECT_NAME: ${{ vars.PROJECT_NAME }}
         TARGET_OS: ${{ vars.TARGET_OS }}
@@ -52,6 +55,11 @@ jobs:
       run: |
         echo "Packaging $RUN_MODE $PROJECT_NAME artifacts"
         zip -r ${PROJECT_NAME}_${TARGET_OS}_${BUILD_TYPE}.zip build
+
+    - name: List Files
+      shell: bash 
+      run: ls
+
 
     # - name: Upload Artifacts
     #   env:
