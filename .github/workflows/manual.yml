@@ -1,4 +1,4 @@
-name: Cross-Platform Build & Package
+name: Workflow with Manual Variable Passing
 
 on:
   workflow_dispatch:
