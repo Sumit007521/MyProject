@@ -12,12 +12,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # - name: Get environment variables
-    #   uses: Sumit007521/getEnvVars@feature/update
-    #   with:
-    #     env_name: "development"
-    #     gh_token: ${{ secrets.GH_TOKEN }}
-    #     file_type: "env"  
+    - name: Get environment variables
+      uses: Sumit007521/getEnvVars@feature/update
+      with:
+        env_name: "development"
+        gh_token: ${{ secrets.GH_TOKEN }}
+        file_type: "env"  
 
     - name: Variables Checking
       shell: bash 
