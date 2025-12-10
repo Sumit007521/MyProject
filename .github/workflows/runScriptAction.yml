@@ -16,7 +16,10 @@ jobs:
       uses: Sumit007521/getEnvVars@feature/multiEnv
       with:
         env_name: "production,development,staging"
-        gh_token: ${{ secrets.GH_TOKEN }} 
+        gh_token: ${{ secrets.GH_TOKEN }}
+
+    - name: Print Files
+      run: ls
 
     # - name: Upload environment variables
     #   uses: actions/upload-artifact@v4
