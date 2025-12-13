@@ -17,14 +17,15 @@ jobs:
       with:
         env_name: "production,development,staging"
         gh_token: ${{ secrets.GH_TOKEN }}
+        file_type: 'csv'
 
     - name: Print Files
       run: ls
 
-    # - name: Upload environment variables
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: env_var
-    #     path: |
-    #         env_var.json 
-    #         env_var.txt
+    - name: Upload environment variables
+      uses: actions/upload-artifact@v4
+      with:
+        name: env_var
+        path: |
+            env_var.json 
+            env_var.csv
