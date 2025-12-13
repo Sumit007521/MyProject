@@ -27,5 +27,6 @@ jobs:
       with:
         name: env_var
         path: |
-            env_var.json 
-            env_var.csv
+            production.csv
+            staging.csv
+            development.csv
